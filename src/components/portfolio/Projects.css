@@ -1,0 +1,210 @@
+/* Estilos para la galería de proyectos */
+.projects {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   perspective: 1000px; /* Perspectiva 3D */
+   margin-top: 20px;
+   position: relative;
+   height: 200px; /* Altura para el efecto 3D */
+}
+
+.projects img {
+   width: 150px; /* Tamaño de las imágenes */
+   height: auto;
+   transition: transform 0.5s ease, opacity 0.5s ease, filter 0.5s ease;
+   position: absolute;
+   cursor: pointer;
+   border: 2px solid #ccc;
+   border-radius: 10px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+   transform-style: preserve-3d; /* Mantiene la perspectiva 3D */
+}
+
+/* Proyecto seleccionado (centro) */
+.projects img.center {
+   transform: translateZ(0) scale(1.5);
+   opacity: 1;
+   filter: brightness(1);
+   z-index: 2;
+}
+
+/* Proyectos a la izquierda */
+.projects img.left {
+   transform: rotateY(-50deg) translateZ(200px) scale(1); /* Efecto de cilindro exterior */
+   opacity: 0.7;
+   filter: brightness(0.8);
+   z-index: 1;
+}
+
+/* Proyectos a la derecha */
+.projects img.right {
+   transform: rotateY(50deg) translateZ(200px) scale(1); /* Efecto de cilindro exterior */
+   opacity: 0.7;
+   filter: brightness(0.8);
+   z-index: 1;
+}
+
+/* Estilos para la galería inferior */
+.gallery {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin-top: 20px;
+}
+
+.gallery-container {
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   max-width: 800px; /* Ajusta según el tamaño de tus imágenes */
+}
+
+.image-wrapper {
+   position: relative;
+   display: inline-block;
+}
+
+.image-wrapper {
+   width: 700px; /* Ancho fijo del contenedor */
+   height: 437.5px; /* Alto fijo del contenedor */
+   background-color: black; /* Fondo negro para el espacio sobrante */
+   display: flex;
+   justify-content: center; /* Centra la imagen horizontalmente */
+   align-items: center; /* Centra la imagen verticalmente */
+   border-radius: 10px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+   overflow: hidden; /* Evita que la imagen se salga del contenedor */
+}
+
+.image-wrapper img {
+   max-width: 100%; /* La imagen no superará el ancho del contenedor */
+   max-height: 100%; /* La imagen no superará el alto del contenedor */
+   object-fit: contain; /* Ajusta la imagen sin recortarla */
+}
+
+.nav-button {
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
+   color: #333;
+   border: none;
+   width: 30px; /* Tamaño pequeño */
+   height: 30px; /* Tamaño pequeño */
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+   font-size: 16px;
+   border-radius: 5px; /* Bordes cuadrados */
+   transition: background-color 0.3s ease;
+}
+
+.nav-button.prev {
+   left: 10px; /* Posición del botón "<" */
+}
+
+.nav-button.next {
+   right: 10px; /* Posición del botón ">" */
+}
+
+.nav-button:hover {
+   background-color: rgba(255, 255, 255, 0.9); /* Fondo más claro al hacer hover */
+}
+
+:root {
+   --bullet-active-color: #333; /* Color por defecto (tema claro) */
+}
+
+[data-theme="dark"] {
+   --bullet-active-color: #e7e3e3; /* Color para tema oscuro */
+}
+
+.bullets {
+   display: flex;
+   justify-content: center;
+   margin-top: 10px;
+}
+
+.bullet {
+   width: 10px;
+   height: 10px;
+   background-color: #626060;
+   border-radius: 50%;
+   margin: 0 5px;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+}
+
+.bullet.active {
+   background-color: #b6b4b4;
+}
+
+/* Descripción del proyecto */
+.title {
+   text-align: center; /* Centra el texto horizontalmente */
+   margin-top: 0; /* Espacio entre la galería y la descripción */
+   width: 100%; /* Ocupa todo el ancho disponible */
+   max-width: 800px; /* Limita el ancho máximo para que no sea demasiado ancho */
+   margin-left: auto; /* Centra el contenedor horizontalmente */
+   margin-right: auto; /* Centra el contenedor horizontalmente */
+   padding: 10px; /* Espacio interno para que el texto no esté pegado a los bordes */
+}
+
+/* Descripción del proyecto */
+.description {
+   font-size: 150%;
+   text-align: justify; /* Centra el texto horizontalmente */
+   margin-top: 10px; /* Espacio entre la galería y la descripción */
+   width: 100%; /* Ocupa todo el ancho disponible */
+   max-width: 800px; /* Limita el ancho máximo para que no sea demasiado ancho */
+   margin-left: auto; /* Centra el contenedor horizontalmente */
+   margin-right: auto; /* Centra el contenedor horizontalmente */
+   padding: 10px; /* Espacio interno para que el texto no esté pegado a los bordes */
+   white-space: pre-line;
+}
+
+
+
+/* Media queries para pantallas pequeñas (móviles) */
+@media (max-width: 768px) {
+   .projects {
+      height: 150px; /* Reducir la altura para pantallas pequeñas */
+   }
+
+   .projects img {
+      width: 100px; /* Reducir el tamaño de las imágenes */
+   }
+
+   .projects img.center {
+      transform: translateZ(0) scale(1.9); /* Reducir la escala del centro */
+   }
+
+   .projects img.left {
+      transform: rotateY(-30deg) translateX(-190%) scale(1.2); /* Mover a la izquierda y reducir escala */
+      opacity: 0.7; /* Mantener visible */
+      z-index: 1; /* Asegurar que esté por encima del fondo */
+   }
+
+   .projects img.right {
+      transform: rotateY(30deg) translateX(190%) scale(1.2); /* Mover a la derecha y reducir escala */
+      opacity: 0.7; /* Mantener visible */
+      z-index: 1; /* Asegurar que esté por encima del fondo */
+   }
+
+   .gallery-container {
+      max-width: 100%; /* Ajustar el ancho máximo al 100% */
+   }
+
+   .image-wrapper {
+      width: 100%; /* Ajustar el ancho del contenedor al 100% */
+      height: auto; /* Altura automática para mantener la proporción */
+   }
+
+   .description {
+      font-size: 120%; /* Reducir el tamaño de la fuente */
+   }
+}
