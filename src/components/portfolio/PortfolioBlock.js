@@ -23,17 +23,13 @@ function PortfolioBlock() {
         setCurrentImageIndex(0);
     };
 
-    const nextImage = () => {
-        if (currentImageIndex < projects[currentProjectIndex].gallery.length - 1) {
-            setCurrentImageIndex((prev) => prev + 1);
-        }
-    };
+const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % projects[currentProjectIndex].gallery.length);
+};
 
-    const prevImage = () => {
-        if (currentImageIndex > 0) {
-            setCurrentImageIndex((prev) => prev - 1);
-        }
-    };
+const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + projects[currentProjectIndex].gallery.length) % projects[currentProjectIndex].gallery.length);
+};
 
     const handleTouchStartProjects = (e) => {
         setTouchStartXProjects(e.touches[0].clientX);
@@ -54,6 +50,7 @@ function PortfolioBlock() {
     };
 
     const handleTouchStartGallery = (e) => {
+        setTouchEndXGallery(0); // Reset al inicio
         setTouchStartXGallery(e.touches[0].clientX);
     };
 
@@ -63,12 +60,22 @@ function PortfolioBlock() {
     };
 
     const handleTouchEndGallery = () => {
-        if (touchStartXGallery - touchEndXGallery > 50) {
-            nextImage(); // Swipe hacia la izquierda (siguiente imagen)
-        } else if (touchEndXGallery - touchStartXGallery > 50) {
-            prevImage(); // Swipe hacia la derecha (imagen anterior)
+        const swipeThreshold = 50;
+        const swipeDistance = touchStartXGallery - touchEndXGallery;
+        
+        if (Math.abs(swipeDistance) > swipeThreshold) {
+            if (swipeDistance > 0) {
+                // Swipe izquierda -> siguiente imagen
+                nextImage();
+            } else {
+                // Swipe derecha -> imagen anterior  
+                prevImage();
+            }
         }
-        setTouchEndXGallery(0); // Resetea el valor
+        
+        // Reset valores
+        setTouchStartXGallery(0);
+        setTouchEndXGallery(0);
     };
 
     const currentGalleryItem = projects[currentProjectIndex].gallery[currentImageIndex];
@@ -99,6 +106,10 @@ function PortfolioBlock() {
                         />
                     );
                 })}
+            </div>
+
+            <div className="title" id="projectTitle">
+                <h2>{projects[currentProjectIndex].title}</h2>
             </div>
 
             <div 
@@ -143,9 +154,7 @@ function PortfolioBlock() {
                 </div>
             </div>
 
-            <div className="title" id="projectTitle">
-                <h2>{projects[currentProjectIndex].title}</h2>
-            </div>
+
             <div className="description" id="projectDescription">
                 {projects[currentProjectIndex].description}
             </div>

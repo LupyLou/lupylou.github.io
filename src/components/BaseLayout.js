@@ -16,7 +16,7 @@ export default function BaseLayout() {
    const refAbout = useScrollObserver(setActive);
    const refPortfolio = useScrollObserver(setActive);
    let [darkMode, setDarkMode] = useState(false);
-
+   const [currentYear] = useState(new Date().getFullYear());
 
 
    function handleToggleDarkMode() {
@@ -50,7 +50,7 @@ export default function BaseLayout() {
                <Box component={'footer'} display={'flex'} flexDirection={'column'} alignItems={'center'}
                   py={'1.5rem'} sx={{ opacity: 0.7 }} width={'100%'}>
                   <p>💜</p>
-                  <p>&copy; 2025</p>
+                  <p>&copy; {currentYear}</p>
                </Box>
             </Grid>
          </Grid>
