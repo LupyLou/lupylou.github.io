@@ -1,0 +1,58 @@
+@import "../../variables.modules";
+
+.aboutSection {
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: transparent;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 110%;
+
+  h2 {
+    margin-bottom: 1.5rem;
+    color: inherit;
+  }
+
+  h3 {
+    margin: 1rem 0;
+    color: inherit;
+  }
+
+  p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-size: 130%;
+    color: inherit;
+  }
+
+  ul {
+    padding-left: 1rem;
+  }
+  div {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-size: 130%;
+    color: inherit;
+  }
+  
+    details {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-size: 120%;
+    color: inherit;
+  }
+}
+
+.skills {
+  columns: 1;
+  @media only screen and (min-width: 940px) {
+    columns: 2;
+  }
+
+  li {
+    margin: 0.5rem 0;
+    line-height: 1.75;
+  }
+}
