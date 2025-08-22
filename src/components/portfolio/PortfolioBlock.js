@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
 import { info } from "../../info/Info";
 import './Projects.css';
-import videoPlayer from "../../img/Projects/videoPlayer.gif"; // Simulador de Reproductor si se manda un video a la galería
+import 'lite-youtube-embed/src/lite-yt-embed.css';
+import 'lite-youtube-embed';
+
+// Registrar manualmente el custom element si no está definido
+if (typeof window !== 'undefined' && !customElements.get('lite-youtube')) {
+    import('lite-youtube-embed').then(module => {
+        // El paquete ya lo registra, pero por si acaso
+    });
+}
 
 function PortfolioBlock() {
     const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
@@ -127,13 +135,25 @@ const prevImage = () => {
                                 className="gallery-image"
                             />
                         ) : (
-                            <a href={currentGalleryItem.url} target="_blank" rel="noopener noreferrer">
-                                <img 
-                                    src={videoPlayer} 
-                                    alt={`Video ${currentImageIndex + 1} ${projects[currentProjectIndex].title}`} 
-                                    className="gallery-image"
-                                />
-                            </a>
+                            (() => {
+                                // Extracción robusta del videoId de YouTube
+                                const url = currentGalleryItem.url;
+                                let videoId = null;
+                                const regExp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([\w-]{11})/;
+                                const match = url.match(regExp);
+                                if (match && match[1]) {
+                                    videoId = match[1];
+                                }
+                                return videoId ? (
+                                    <div
+                                        className="gallery-video"
+                                        style={{ width: '100%', maxWidth: '560px', margin: '0 auto' }}
+                                        dangerouslySetInnerHTML={{ __html: `<lite-youtube videoid='${videoId}' style='width:100%;height:315px;'></lite-youtube>` }}
+                                    />
+                                ) : (
+                                    <span>Video no válido</span>
+                                );
+                            })()
                         )}
                         {currentImageIndex > 0 && (
                             <button className="nav-button prev" onClick={prevImage}>&lt;</button>

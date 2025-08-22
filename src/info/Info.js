@@ -80,7 +80,7 @@ export const info = {
         }
     ],
     skills: {
-        proficientWith: ['•Office 365', '•Premiere', '•Illustrator', '•Canvas', '•Git', '•Github', '•Power BI', '•Python', '•Pandas'],
+        proficientWith: ['•Office 365', '•Premiere', '•Illustrator', '•Canva', '•Git', '•Github', '•Power BI', '•Python', '•Pandas'],
         exposedTo: ['•Javascript', '•SQL'],
         lenguages: ['•Español nativo', '•Inglés B2']
     },
@@ -113,10 +113,10 @@ export const info = {
     hobbies: 
         {
             info: `Me encanta viajar en México y por el mundo. ✈️🗺️ 
-            Tengo una perrita que se llama Ramona 🐶 tipo salchicha🌭 es mi fiel compañera a donde voy.
+            Tengo una perrita que se llama Ramona 🐶 tipo salchicha 🌭 es mi fiel compañera a donde voy.
             Me encanta la playa 🏖️🌊⛵, la música (fan de Pulp) 🎶 y mirar televisión 📺.
             Me gusta cocinar👩‍🍳; cochinita pibil es mi especialidad.
-            Quiero seguir desarrollándome en la visualización de datos 📊, y superarme profesional y personalmente.🎖️
+            Quiero seguir desarrollándome en la visualización de datos 📊, y superarme profesional y personalmente 🎖️.
             `
         },
     portfolio: [
@@ -126,7 +126,7 @@ export const info = {
             source: "",
             description: 
                 `
-                Participé en la propuesta de diseño de una app intenra para vendedores Telcel. Su función principal era ofrecer contenidos, como guías con consejos y tips de ventas, que ayudaban a los usuarios a mejorar sus habilidades comerciales. A
+                Participé en la propuesta de diseño de una app interna para vendedores Telcel. Su función principal era ofrecer contenidos, como guías con consejos y tips de ventas, que ayudaban a los usuarios a mejorar sus habilidades comerciales. A
                 demás, la aplicación enviaba mensajes de alerta con una comunicación corporativa y formal, los cuales acompañaban al vendedor durante todo su recorrido en el aplicativo. Estos mensajes proporcionaban soporte continuo, asegurando que los usuarios pudieran aprovechar al máximo la capacitación y aplicarla en su día a día laboral. 
                 De esta manera, la app se convirtió en una herramienta esencial para el desarrollo de los vendedores, optimizando su rendimiento y manteniéndolos actualizados con las mejores prácticas de ventas.
                     
@@ -171,7 +171,7 @@ export const info = {
             description: 
                 `
                 En la versión de 2018, la aplicación mostraba toda la oferta disponible, segmentada entre planes prepago y pospago, junto con los equipos y promociones, como la oferta amigo. 
-                Para la versión de 2021, participé en la propuesta de look and feel, se porpuso un cambio de la experiencia al permitirle al usuario seleccionar directamente la marca del equipo que deseaba mostrar. 
+                Para la versión de 2021, participé en la propuesta de look and feel, se propuso un cambio de la experiencia al permitirle al usuario seleccionar directamente la marca del equipo que deseaba mostrar. 
                 A partir de ahí, el vendedor podía elegir el plan adecuado para el cliente mediante una barra deslizante que ajustaba el precio del plan según las necesidades del cliente. 
                 Además, una de las funciones más útiles fue la posibilidad de compartir toda la oferta seleccionada con el cliente a través de WhatsApp, facilitando la comunicación y mejorando la experiencia de compra. 
                 Propuse la implementación de push notifications para impulsar la venta de equipos en stock que tenían en el portafolio comercial.
@@ -185,7 +185,8 @@ export const info = {
             gallery: [
                 { type: "image", url: p3_img1 },
                 { type: "image", url: p3_img2 },
-                { type: "image", url: p3_img3 }
+                { type: "image", url: p3_img3 },
+                // { type: "video", url: "https://www.youtube.com/watch?v=yuTMWgOduFM" }
             ]
         }
     ]
