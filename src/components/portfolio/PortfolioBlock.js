@@ -11,7 +11,7 @@ if (typeof window !== 'undefined' && !customElements.get('lite-youtube')) {
     });
 }
 
-function PortfolioBlock() {
+function PortfolioBlock({ darkMode }) {
     const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [touchStartXProjects, setTouchStartXProjects] = useState(0);
@@ -139,7 +139,7 @@ const prevImage = () => {
                                 // Extracción robusta del videoId de YouTube
                                 const url = currentGalleryItem.url;
                                 let videoId = null;
-                                const regExp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([\w-]{11})/;
+                                const regExp = /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([\w-]{11})/;
                                 const match = url.match(regExp);
                                 if (match && match[1]) {
                                     videoId = match[1];
@@ -175,9 +175,84 @@ const prevImage = () => {
             </div>
 
 
-            <div className="description" id="projectDescription">
-                {projects[currentProjectIndex].description}
+            <div className="description" id="projectDescription" 
+                dangerouslySetInnerHTML={{ __html: projects[currentProjectIndex].description }}>
             </div>
+            
+            {projects[currentProjectIndex].stacks && projects[currentProjectIndex].stacks.length > 0 && (
+                <div className="project-stacks" style={{ 
+                    display: 'flex', 
+                    flexWrap: 'wrap',
+                    justifyContent: 'center', 
+                    gap: '10px', 
+                    margin: '15px 0' 
+                }}>
+                    {projects[currentProjectIndex].stacks.map((stack, index) => (
+                        <span
+                            key={index}
+                            style={{
+                                padding: '5px 10px',
+                                backgroundColor: darkMode ? '#444' : '#e7e7e7ff',
+                                color: darkMode ? '#fff' : '#333',
+                                borderRadius: '20px',
+                                fontSize: '12px',
+                                fontWeight: 'bold',
+                                display: 'inline-flex',
+                                alignItems: 'center'
+                            }}
+                        >
+                            {stack}
+                        </span>
+                    ))}
+                </div>
+            )}
+            
+            {(projects[currentProjectIndex].live || projects[currentProjectIndex].source) && (
+                <div className="project-links" style={{ display: 'flex', justifyContent: 'center', gap: '20px', margin: '15px 0' }}>
+                    {projects[currentProjectIndex].live && (
+                        <a 
+                            href={projects[currentProjectIndex].live} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            style={{
+                                padding: '8px 16px',
+                                backgroundColor: 'transparent',
+                                color: darkMode ? '#ebe9e9ff' : '#333',
+                                border: '2px solid #333',
+                                borderRadius: '4px',
+                                cursor: 'pointer',
+                                fontWeight: 'bold',
+                                textDecoration: 'none',
+                                display: 'inline-flex',
+                                alignItems: 'center'
+                            }}
+                        >
+                            <i className="fa fa-eye" style={{ marginRight: '8px' }}></i> Ver Sitio
+                        </a>
+                    )}
+                    {projects[currentProjectIndex].source && (
+                        <a 
+                            href={projects[currentProjectIndex].source} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            style={{
+                                padding: '8px 16px',
+                                backgroundColor: 'transparent',
+                                color: darkMode ? '#ebe9e9ff' : '#333',
+                                border: '2px solid #333',
+                                borderRadius: '4px',
+                                cursor: 'pointer',
+                                fontWeight: 'bold',
+                                textDecoration: 'none',
+                                display: 'inline-flex',
+                                alignItems: 'center'
+                            }}
+                        >
+                            <i className="fa fa-code" style={{ marginRight: '8px' }}></i> Ver Código
+                        </a>
+                    )}
+                </div>
+            )}
         </div>
     );
 }
